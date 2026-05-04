@@ -1,18 +1,80 @@
-# React + Vite
+# Landchecker Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance frontend application built with React 19 and Vite, designed to provide a seamless user experience for the Landchecker platform.
 
-Currently, two official plugins are available:
+## 🚀 Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Core:** [React 19](https://react.dev/) & [Vite 8](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Routing:** [React Router 7](https://reactrouter.com/)
+- **State Management & Data Fetching:** [TanStack Query v5](https://tanstack.com/query/latest)
+- **UI Components:** [Radix UI](https://www.radix-ui.com/) & [Shadcn UI](https://ui.shadcn.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **HTTP Client:** [Axios](https://axios-http.com/)
+- **Real-time Communication:** [@rails/actioncable](https://github.com/rails/rails/tree/main/actioncable)
+- **Theming:** [Next Themes](https://github.com/pacocoursey/next-themes)
 
-## React Compiler
+## 🛠️ Prerequisites
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-Note: This will impact Vite dev & build performances.
+## 📦 Installation
 
-## Expanding the ESLint configuration
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd landchecker-frontend
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup:**
+   Create a `.env` file in the root directory and configure your backend URLs:
+   ```env
+   VITE_API_URL=http://localhost:3000
+   VITE_WS_URL=ws://localhost:3000
+   ```
+
+## 💻 Development
+
+To start the development server with Hot Module Replacement (HMR):
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+### Available Scripts
+
+- `npm run dev` - Starts the development server.
+- `npm run build` - Builds the application for production.
+- `npm run lint` - Runs ESLint to check for code quality issues.
+- `npm run preview` - Locally previews the production build.
+
+## 📂 Project Structure
+
+```text
+src/
+├── api/          # API services and axios configuration
+├── components/   # Reusable UI components
+├── context/      # React context providers
+├── features/     # Feature-based logic and components
+├── hooks/        # Custom React hooks
+├── pages/        # Main page components/routes
+├── utils/        # Utility functions
+└── App.jsx       # Main application entry point
+```
+
+## 🧪 Linting
+
+To ensure code consistency, we use ESLint. You can run the linter using:
+
+```bash
+npm run lint
+```
