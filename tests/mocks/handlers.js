@@ -1,24 +1,44 @@
 import { http, HttpResponse } from 'msw'
 
-// Using wildcards to make handlers more robust across different environments
 export const handlers = [
-  // Mock Auth Me
-  http.get('*/api/v1/auth/me', () => {
+  // Broad matchers for maximum reliability in tests
+  http.get('*/auth/me', () => {
     return HttpResponse.json({
       user: { id: 1, first_name: 'Test', last_name: 'User', email: 'test@example.com' }
     })
   }),
 
-  // Mock Watchlist GET
-  http.get('*/api/v1/watchlist_items', () => {
+  http.post('*/auth/login', async ({ request }) => {
+    const { user } = await request.json()
+    if (user.email === 'test@example.com' && user.password === 'password') {
+      return HttpResponse.json({
+        token: 'fake-jwt-token',
+        user: { id: 1, first_name: 'Test', last_name: 'User', email: 'test@example.com' }
+      })
+    }
+    return HttpResponse.json({ error: 'Invalid email or password.' }, { status: 401 })
+  }),
+
+  http.post('*/auth/register', async ({ request }) => {
+    const { user } = await request.json()
+    return HttpResponse.json({
+      token: 'fake-jwt-token',
+      user: { id: 2, first_name: user.first_name, last_name: user.last_name, email: user.email }
+    })
+  }),
+
+  http.delete('*/auth/logout', () => {
+    return HttpResponse.json({ message: 'Logged out successfully' })
+  }),
+
+  http.get('*/watchlist_items', () => {
     return HttpResponse.json([
       { id: 1, property_id: 101, property: { id: 101, title: 'Mocked Property 1', price: 1000000, images: ['img1.jpg'] } },
       { id: 2, property_id: 102, property: { id: 102, title: 'Mocked Property 2', price: 850000, images: ['img2.jpg'] } },
     ])
   }),
 
-  // Mock Properties GET
-  http.get('*/api/v1/properties', () => {
+  http.get('*/properties', () => {
     return HttpResponse.json({
       data: [
         { id: 101, title: 'Beachfront Villa', suburb: 'Bondi', price: 2500000, images: ['img1.jpg'], status: 'active', property_type: 'house' },
@@ -31,8 +51,7 @@ export const handlers = [
     })
   }),
 
-  // Mock Watchlist POST
-  http.post('*/api/v1/watchlist_items', async ({ request }) => {
+  http.post('*/watchlist_items', async ({ request }) => {
     const newItem = await request.json()
     return HttpResponse.json({
       watchlist_item: {
@@ -43,8 +62,7 @@ export const handlers = [
     }, { status: 201 })
   }),
 
-  // Mock Watchlist DELETE
-  http.delete('*/api/v1/watchlist_items/:id', ({ params }) => {
+  http.delete('*/watchlist_items/:id', ({ params }) => {
     return HttpResponse.json({ message: `Item ${params.id} removed` })
   }),
 ]
