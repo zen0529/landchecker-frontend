@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from "react"
-import { countActiveFilters } from "../utils/filterBuilder"
+import { countActiveFilters } from "@/features/properties/utils/filterBuilder"
 
 export const usePropertyFilters = () => {
     const [filters, setFilters] = useState({})

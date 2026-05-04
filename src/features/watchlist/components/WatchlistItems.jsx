@@ -1,4 +1,4 @@
-import { formatPrice } from "../../properties/utils/priceFormatter"
+import { formatPrice } from "@/features/properties/utils/priceFormatter"
 import { X, ExternalLink } from "lucide-react"
 
 export default function WatchlistItem({ property, onRemove }) {

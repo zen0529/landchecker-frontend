@@ -34,40 +34,6 @@ export default function WatchlistPanel({ items, allProperties, onRemove, wsEvent
                 <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-slate-50/50" />
             </div>
 
-            {/* WS Feed */}
-            {wsEvents.length > 0 && (
-                <div className="border-b border-slate-100 bg-slate-50/40 p-5">
-                    <div className="mb-4 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.15em] text-slate-400">
-                            <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"></span>
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-success"></span>
-                            </span>
-                            Live Updates
-                        </div>
-                        <Activity size={12} className="text-slate-300" />
-                    </div>
-                    <div className="flex flex-col gap-3">
-                        {wsEvents.slice(-2).map((e, i) => (
-                            <div
-                                key={i}
-                                className="animate-fade-slide-up flex items-center gap-3 rounded-2xl border border-white bg-white/80 p-3.5 text-[11px] shadow-sm backdrop-blur-sm transition-all hover:shadow-md"
-                            >
-                                <div className={cn(
-                                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg shadow-inner",
-                                    e.type === "PRICE_DROP" ? "bg-success/10 text-success" : "bg-warning/10 text-warning"
-                                )}>
-                                    {e.type === "PRICE_DROP" ? "📉" : "🔔"}
-                                </div>
-                                <div className="font-semibold leading-relaxed text-slate-700">
-                                    {e.message}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
             {/* Items */}
             <div className="flex-1 overflow-y-auto scrollbar-premium py-6">
                 {items.length === 0 ? (
